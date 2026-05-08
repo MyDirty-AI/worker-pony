@@ -6,3 +6,5 @@ runpod_worker_comfy:
   controlnet: models/controlnet/
   insightface: models/insightface/
   embeddings: models/embeddings/
+  clip_vision: models/clip_vision/
+  ipadapter: models/ipadapter/
