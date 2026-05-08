@@ -22,4 +22,4 @@ COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-CMD ["/start.sh"]
+ENTRYPOINT ["/start.sh"]
