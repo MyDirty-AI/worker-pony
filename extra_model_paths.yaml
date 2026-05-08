@@ -1,0 +1,8 @@
+runpod_worker_comfy:
+  base_path: /runpod-volume
+  checkpoints: models/checkpoints/
+  loras: models/loras/
+  instantid: models/instantid/
+  controlnet: models/controlnet/
+  insightface: models/insightface/
+  embeddings: models/embeddings/
