@@ -18,4 +18,9 @@ RUN cd /comfyui/custom_nodes && \
 
 RUN pip install insightface onnxruntime-gpu || true
 
+# Pre-create insightface dir and symlink to network volume at build time
+RUN mkdir -p /root/.insightface/models && \
+    ln -sf /runpod-volume/models/insightface/models/antelopev2 \
+    /root/.insightface/models/antelopev2
+
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
