@@ -1,6 +1,5 @@
 #!/bin/bash
-echo "=== Linking insightface ==="
-mkdir -p /root/.insightface/models
+mkdir -p /comfyui/models/insightface/models
 ln -sf /runpod-volume/models/insightface/models/antelopev2 \
-    /root/.insightface/models/antelopev2
-echo "✅ antelopev2 linked"
+    /comfyui/models/insightface/models/antelopev2
+echo "✅ insightface linked"
