@@ -17,6 +17,6 @@ RUN cd /comfyui/custom_nodes && \
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/Acly/comfyui-tooling-nodes.git
 
-RUN pip install insightface onnxruntime-gpu || true
+RUN pip install insightface==0.7.3 onnxruntime-gpu || true
 
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
