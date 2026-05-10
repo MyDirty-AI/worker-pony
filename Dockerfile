@@ -8,14 +8,11 @@ RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/chrisgoringe/cg-use-everywhere.git
 
 RUN cd /comfyui/custom_nodes && \
-    git clone https://github.com/cubiq/ComfyUI_IPAdapter_plus.git && \
-    cd ComfyUI_IPAdapter_plus && \
-    /opt/venv/bin/pip install -r requirements.txt
+    git clone https://github.com/cubiq/ComfyUI_IPAdapter_plus.git
 
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/Acly/comfyui-tooling-nodes.git
 
-# Core deps + InsightFace (required for FaceID)
 RUN /opt/venv/bin/pip install --no-cache-dir \
     accelerate \
     xformers \
