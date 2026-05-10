@@ -13,11 +13,12 @@ RUN cd /comfyui/custom_nodes && \
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/Acly/comfyui-tooling-nodes.git
 
+# Pin insightface to version that matches IPAdapter_plus node code
 RUN /opt/venv/bin/pip install --no-cache-dir \
     accelerate \
     xformers \
-    insightface \
-    onnxruntime-gpu \
+    "insightface==0.7.3" \
+    "onnxruntime-gpu==1.16.3" \
     opencv-python-headless \
     || true
 
