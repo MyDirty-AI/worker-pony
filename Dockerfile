@@ -7,7 +7,8 @@ RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/chrisgoringe/cg-use-everywhere.git
 
 RUN cd /comfyui/custom_nodes && \
-    git clone https://github.com/cubiq/ComfyUI_IPAdapter_plus.git
+    git clone https://github.com/cubiq/ComfyUI_IPAdapter_plus.git && \
+    cd ComfyUI_IPAdapter_plus && pip install -r requirements.txt || true
 
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/cubiq/ComfyUI_InstantID.git && \
@@ -19,5 +20,3 @@ RUN cd /comfyui/custom_nodes && \
 RUN pip install insightface onnxruntime-gpu || true
 
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
-COPY pre_start.sh /pre_start.sh
-RUN chmod +x /pre_start.sh
