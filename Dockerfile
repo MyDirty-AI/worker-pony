@@ -1,9 +1,11 @@
 FROM runpod/worker-comfyui:5.8.5-base
 WORKDIR /comfyui
 
-RUN apt-get update && apt-get install -y aria2 libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    aria2 libgl1 libglib2.0-0 \
+    python3-dev build-essential cmake git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Custom nodes
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/chrisgoringe/cg-use-everywhere.git
 
@@ -13,13 +15,15 @@ RUN cd /comfyui/custom_nodes && \
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/Acly/comfyui-tooling-nodes.git
 
-# Pin insightface to version that matches IPAdapter_plus node code
-RUN /opt/venv/bin/pip install --no-cache-dir \
-    accelerate \
-    xformers \
-    "insightface==0.7.3" \
-    "onnxruntime-gpu==1.16.3" \
-    opencv-python-headless \
-    || true
+RUN /opt/venv/bin/pip install --no-cache-dir accelerate xformers
+
+# Build insightface from source for Python 3.12
+RUN /opt/venv/bin/pip install --no-cache-dir cython numpy && \
+    git clone https://github.com/deepinsight/insightface.git /tmp/insightface && \
+    cd /tmp/insightface/python-package && \
+    /opt/venv/bin/pip install --no-cache-dir . && \
+    rm -rf /tmp/insightface
+
+RUN /opt/venv/bin/pip install --no-cache-dir opencv-python-headless
 
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
